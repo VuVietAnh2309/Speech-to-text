@@ -3,6 +3,6 @@ yt-dlp
 torch
 transformers
 torchaudio
-whisper @ git+https://github.com/openai/whisper.git
+openai-whisper
 ffmpeg-python
 requests
