@@ -1,0 +1,8 @@
+gradio
+yt-dlp
+torch
+transformers
+torchaudio
+whisper @ git+https://github.com/openai/whisper.git
+ffmpeg-python
+requests
