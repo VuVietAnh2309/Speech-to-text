@@ -36,14 +36,17 @@ def transcribe_and_process_audio(youtube_url):
     transcript = result['text']
 
     # Gọi API Gemini để hoàn thiện văn bản
-    processed_text = call_gemini_api(transcript)
+    processed_text = call_gemini_api(transcript, task="add_punctuation")
+
+    # Gọi API Gemini để tóm tắt văn bản đã hoàn thiện
+    summarized_text = call_gemini_api(processed_text, task="summarize")
 
     # Lưu processed_text vào file
     transcript_file = "transcript.txt"
     with open(transcript_file, "w", encoding='utf-8') as f:
-        f.write(processed_text)
+        f.write(summarized_text)
 
     # Xóa file âm thanh sau khi xử lý
     os.remove(audio_file)
 
-    return processed_text, transcript_file  # Trả về văn bản và file text
+    return processed_text, summarized_text, transcript_file  # Trả về văn bản đã hoàn thiện, tóm tắt và file text

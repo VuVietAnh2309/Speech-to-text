@@ -7,12 +7,16 @@ api_key = 'AIzaSyD3Hu747dbztC-jogggDfZudh_zYg40PJg'  # Thay bằng API key thự
 api_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={api_key}"
 
 # Hàm gọi API Google Gemini
-def call_gemini_api(text):
+def call_gemini_api(text, task="add_punctuation"):
     headers = {
         'Content-Type': 'application/json'
     }
 
-    prompt = f"Hãy thêm dấu câu cho đoạn văn sau đây: {text}"
+    # Tùy chỉnh prompt dựa trên tác vụ
+    if task == "add_punctuation":
+        prompt = f"Hãy thêm dấu câu cho đoạn văn sau đây: {text}"
+    elif task == "summarize":
+        prompt = f"Hãy tóm tắt nội dung chính của đoạn văn sau đây: {text}"
 
     payload = {
         "contents": [
